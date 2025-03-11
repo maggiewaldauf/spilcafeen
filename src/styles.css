@@ -1,3 +1,6 @@
+/* Importing Sora Font */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap');
+
 /* ---------- root variables ---------- */
 :root {
     --light-grey: #f1f1f4;
@@ -6,9 +9,6 @@
     --text-color-danger: rgb(152, 58, 58);
     --white: #f1f1f1;
 }
-
-/* Importing Sora Font */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap');
 
 body {
     font-family: 'Sora', sans-serif;
@@ -43,14 +43,11 @@ h3 {
     letter-spacing: 0.1px;
 }
 
-a {
-    color: var(--green);
-}
-
 .page {
     background-color: #f1f1f1;
     min-height: calc(100vh - 58px - 2em);
     padding: 1em;
+    padding-top: 3em;
 }
 
 .text-center {
@@ -66,6 +63,7 @@ a {
 
 
 /* ---------- nav styling ---------- */
+/* Style the navbar */
 nav {
     background-color: #8C0303;
     position: fixed;
@@ -73,6 +71,23 @@ nav {
     left: 0;
     right: 0;
     text-align: center;
+    display: flex;
+    justify-content: space-between; /* Space between logo and links */
+    align-items: center; /* Vertically center content */
+    padding: 10px 20px; /* Padding around the navbar */
+    z-index: 100; /* Ensure navbar is always in front */
+}
+
+/* Style the logo */
+nav .logo {
+    height: 50px; /* Adjust logo size */
+    margin-left: 20px; /* Space from the left edge */
+}
+
+/* Style the links container */
+nav .nav-links {
+    display: flex;
+    gap: 20px; /* Space between the links */
 }
 
 /* Style the links inside the navigation bar */
@@ -95,14 +110,18 @@ nav a:hover {
 /* Add a color to the active/current link */
 nav a.active {
     background-color: #B8B8B8;
-    color: var(--green);
+    color: #8C0303;
 }
+
+
 
 /* ---------- grid container styling ---------- */
 .grid-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1em;
+    min-height: 200px;
+
 }
 
 @media (min-width: 600px) {
@@ -160,7 +179,7 @@ form button {
     max-width: 350px;
 }
 
-button {
+form button {
     font-weight: 300;
     text-align: center;
     cursor: pointer;
@@ -191,7 +210,7 @@ button.btn-outline {
     padding: 2.032em 1em;
 }
 
-input {
+.form-input {
     margin: 0.5em auto 2em;
     width: 100%;
     max-width: 350px;
@@ -219,24 +238,62 @@ form .file-input {
     display: none;
 }
 
+/* Container styling */
+.difficulty-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Select box styling */
+.difficulty-selector select {
+  padding: 8px 12px;
+  margin-top: 10px;
+  width: 100%;
+  border: 2px solid #8C0303;
+  border-radius: 5px;
+  color: #5c5c5c;
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Hover effect for select box */
+.difficulty-selector select:hover {
+  border-color: #6c0202;
+}
+
+/* Focus effect for select box */
+.difficulty-selector select:focus {
+  outline: none;
+  border-color: #4c0101;
+  box-shadow: 0 0 5px rgba(76, 1, 1, 0.5);
+}
 
 
 /* -----------Home Page Styling--------------*/
+
+.search-and-filter {
+    background: #f1f1f1;
+    padding: 60px 30px 0px 30px;
+    border-bottom: 2px solid #8C0303;
+}
+
 .search-container {
     position: relative;
-    display: inline-block;
+    display: block;
     width: 100%;
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
     justify-content: center;
-
+    align-items: center;
 }
 
 .search-bar {
     width: 100%;
-    max-width: 600px;
+    max-width: 1000px;       /* Limits the maximum width of the search bar */
     padding: 10px 30px 10px 10px; /* Right padding for space for the icon */
-    margin-bottom: 10px;
+    margin: 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
@@ -249,57 +306,76 @@ form .file-input {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 18px; 
+    font-size: 18px;
     pointer-events: none; /* Prevent the icon from interfering with input interaction */
 }
 
 .filters {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15px;
-    background-color: white;
-    align-items: center;
+    gap: 10%; /* Space between each filter group */
+    padding: 20px;
+    background-color: f1f1f1;
+    align-items: center; /* Align items vertically centered */
     justify-content: center;
-}
-
-.filter {
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .filter {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-
-}
-
-.player-filter {
+  }
+  
+  .player-filter {
     display: flex;
-    align-items: center;
-    gap: 5px; /* Space between elements */
-}
-
-.counter-btn {
-    background-color: #ddd;
+    align-items: baseline;
+    gap: 5px;
+  }
+  
+  .counter-btn {
+    background-color: #8C0303;
+    color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 8px 15px;
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
-}
-
-.player-input {
-    width: 40px; /* Smaller input field */
+  }
+  
+  .player-input {
+    width: 40px;
     text-align: center;
     font-size: 16px;
-    padding: 5px;
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-
-
-
-
-/*--------------Card Styling-------------*/
+  }
+  
+  .range-slider {
+    display: flex;
+    align-items: center;
+  }
+  
+  .range-input {
+    margin-right: 10px;
+  }
+  
+  .duration-input {
+    width: 80px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+  }
+/* ---------- Card Styling ------------- */
 .post-card {
     background-color: #fff;
     border-radius: 8px;
@@ -308,10 +384,13 @@ form .file-input {
     margin: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
+    position: relative; /* Allow for z-index adjustments */
+    z-index: 1; /* Default z-index for the card */
 }
 
 .post-card:hover {
     transform: translateY(-5px);
+    z-index: 10; /* Raise the card slightly on hover, but still behind the navbar */
 }
 
 /* Image */
