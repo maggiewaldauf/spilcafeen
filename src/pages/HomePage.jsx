@@ -6,7 +6,7 @@ export default function HomePage() {
     const [searchQuery, setSearchQuery] = useState(""); // 🔍 Search state
     const [selectedCategory, setSelectedCategory] = useState(""); // Category filter state
     const [selectedAge, setSelectedAge] = useState(""); // Age filter state
-    const [selectedPlayers, setSelectedPlayers] = useState(""); // Players filter state
+    const [selectedPlayers, setSelectedPlayers] = useState(1); // Players filter state (default to 1)
     const [selectedDuration, setSelectedDuration] = useState(""); // Duration filter state
 
     useEffect(() => {
@@ -28,40 +28,23 @@ export default function HomePage() {
     // Filter posts based on search, category, age, players, and duration
     const filteredPosts = posts.filter(post => {
         const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase());
-    
         const matchesCategory = selectedCategory === "" || post.genre === selectedCategory;
-    
-        // Fix age filter comparison and convert age to number
+
         const matchesAge = selectedAge === "" || (
             (selectedAge === "<8" && post.age <= 8) ||
             (selectedAge === "<12" && post.age <= 12) ||
             (selectedAge === "<18" && post.age <= 18) ||
             (selectedAge === "18+" && post.age >= 18)
         );
-    
-        const matchesPlayers = selectedPlayers === "" || (
-            (selectedPlayers === "2" && post.minPlayers <= 2 && post.maxPlayers >= 2) ||
-            (selectedPlayers === "2-4" && post.minPlayers >= 2 && post.maxPlayers <= 4) ||
-            (selectedPlayers === "2-6" && post.minPlayers >= 2 && post.maxPlayers <= 6) ||
-            (selectedPlayers === "6+" && post.maxPlayers >= 6) // Only check maxPlayers for 6+
-        );
-        
-    
-        // Fix duration filter - ensure post.duration is a number
+
+        const matchesPlayers = selectedPlayers === "" || 
+            (post.minPlayers <= selectedPlayers && post.maxPlayers >= selectedPlayers);
+
         const matchesDuration = selectedDuration === "" || (
             (selectedDuration === "<30" && post.duration <= 30) ||
             (selectedDuration === "<60" && post.duration <= 60)
         );
-    
-        // Debugging Log
-        console.log('Filtered Post:', post.title, {
-            matchesSearch,
-            matchesCategory,
-            matchesAge,
-            matchesPlayers,
-            matchesDuration
-        });
-    
+
         return matchesSearch && matchesCategory && matchesAge && matchesPlayers && matchesDuration;
     });
 
@@ -76,11 +59,12 @@ export default function HomePage() {
                     onChange={e => setSearchQuery(e.target.value)}
                     className="search-bar"
                 />
-                <span className="search-icon">&#x1F50D;</span> {/* Unicode for the magnifying glass */}
+                <span className="search-icon">&#x1F50D;</span>
             </div>
 
             <div className="filters">
                 {/* Category Filter */}
+                <label>Category</label>
                 <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="filter">
                     <option value="">All Categories</option>
                     {categories.map(category => (
@@ -89,28 +73,35 @@ export default function HomePage() {
                 </select>
 
                 {/* Age Filter */}
+                <label>Age</label>
                 <select value={selectedAge} onChange={e => setSelectedAge(e.target.value)} className="filter">
                     <option value="">All Ages</option>
-                    <option value="&lt;8">Age &lt; 8</option>
-                    <option value="&lt;12">Age &lt; 12</option>
-                    <option value="&lt;18">Age &lt; 18</option>
+                    <option value="<8">Age &lt; 8</option>
+                    <option value="<12">Age &lt; 12</option>
+                    <option value="<18">Age &lt; 18</option>
                     <option value="18+">Age 18+</option>
                 </select>
 
                 {/* Players Filter */}
-                <select value={selectedPlayers} onChange={e => setSelectedPlayers(e.target.value)} className="filter">
-                    <option value="">All Players</option>
-                    <option value="2">2 players</option>
-                    <option value="2-4">2-4 players</option>
-                    <option value="2-6">2-6 players</option>
-                    <option value="6+">6+ players</option>
-                </select>
+                <label>Players</label>
+                <div className="player-filter">
+                    <button className="counter-btn" onClick={() => setSelectedPlayers(prev => Math.max(1, prev - 1))}>-</button>
+                    <input 
+                        type="number" 
+                        className="player-input"
+                        value={selectedPlayers}
+                        min="1"
+                        onChange={e => setSelectedPlayers(Number(e.target.value))}
+                    />
+                    <button className="counter-btn" onClick={() => setSelectedPlayers(prev => prev + 1)}>+</button>
+                </div>
 
                 {/* Average Duration Filter */}
+                <label>Duration</label>
                 <select value={selectedDuration} onChange={e => setSelectedDuration(e.target.value)} className="filter">
                     <option value="">All Durations</option>
-                    <option value="&lt;30">Duration &lt; 30 min</option>
-                    <option value="&lt;60">Duration &lt; 60 min</option>
+                    <option value="<30">Duration &lt; 30 min</option>
+                    <option value="<60">Duration &lt; 60 min</option>
                 </select>
             </div>
 
