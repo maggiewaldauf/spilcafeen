@@ -1,7 +1,5 @@
 /* ---------- root variables ---------- */
 :root {
-    --green: rgb(38, 76, 89);
-    --light-green: rgb(172, 198, 201);
     --light-grey: #f1f1f4;
     --text-color-light: #f1f1f1;
     --text-color-dark: #333;
@@ -9,25 +7,24 @@
     --white: #f1f1f1;
 }
 
+/* Importing Sora Font */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap');
+
 body {
+    font-family: 'Sora', sans-serif;
+    background-color: var(--background-color);
     color: var(--text-color-dark);
-    padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
 
 main {
-    padding: 58px 0 0;
-    background-color: var(--light-green);
+    padding: 50px 0 0;
+    background-color: #f1f1f1;
 }
 
 h1 {
@@ -51,7 +48,7 @@ a {
 }
 
 .page {
-    background-color: var(--light-green);
+    background-color: #f1f1f1;
     min-height: calc(100vh - 58px - 2em);
     padding: 1em;
 }
@@ -68,11 +65,9 @@ a {
 }
 
 
-
-
 /* ---------- nav styling ---------- */
 nav {
-    background-color: var(--green);
+    background-color: #8C0303;
     position: fixed;
     top: 0;
     left: 0;
@@ -99,7 +94,7 @@ nav a:hover {
 
 /* Add a color to the active/current link */
 nav a.active {
-    background-color: var(--light-green);
+    background-color: #B8B8B8;
     color: var(--green);
 }
 
@@ -136,7 +131,7 @@ nav a.active {
 }
 
 .grid-container > article:hover {
-    box-shadow: 0 8px 16px 0 var(--green);
+    box-shadow: 0 8px 16px 0 #f1f1f1;
 }
 
 .grid-container > article img {
@@ -144,6 +139,7 @@ nav a.active {
     height: 200px;
     object-fit: cover;
 }
+
 
 /* ---------- form styling ---------- */
 
@@ -169,20 +165,21 @@ button {
     text-align: center;
     cursor: pointer;
     border: none;
-    color: var(--text-color-light);
-    background-color: var(--green);
+    color: white;
+    background-color: #8C0303;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     padding: 0.5em 1em;
     font-size: 0.8em;
     display: block;
     margin: 1em auto 0;
+    border-radius: 6px;
 }
 
 button.btn-outline {
-    background-color: var(--light-green);
-    color: var(--green);
-    border: solid 2px var(--green);
+    background-color: #8C0303;
+    color: #8C0303;
+    border: solid 2px #8C0303;
 }
 
 .btn-sign-out {
@@ -201,8 +198,9 @@ input {
     padding: 1em;
     box-sizing: border-box;
     display: block;
-    background: var(--white);
-    border: solid 2px var(--green);
+    background: #f1f1f1;
+    border: solid 2px #8C0303;
+    border-radius: 6px;
 }
 
 .image-preview {
@@ -213,7 +211,8 @@ input {
     margin: 0.5em auto;
     display: block;
     cursor: pointer;
-    border: solid 2px var(--green);
+    border: solid 2px #8C0303;
+    border-radius: 6px;
 }
 
 form .file-input {
@@ -228,7 +227,9 @@ form .file-input {
     display: inline-block;
     width: 100%;
     max-width: 600px;
-    margin: 0 auto; /* Center the container horizontally */
+    margin: 0 auto;
+    justify-content: center;
+
 }
 
 .search-bar {
@@ -248,7 +249,7 @@ form .file-input {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 18px; /* Icon size */
+    font-size: 18px; 
     pointer-events: none; /* Prevent the icon from interfering with input interaction */
 }
 
@@ -257,6 +258,9 @@ form .file-input {
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 15px;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
 }
 
 .filter {
@@ -264,9 +268,8 @@ form .file-input {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    background-color: white;
-}
 
+}
 
 .player-filter {
     display: flex;
@@ -292,6 +295,10 @@ form .file-input {
     border-radius: 5px;
 }
 
+
+
+
+
 /*--------------Card Styling-------------*/
 .post-card {
     background-color: #fff;
@@ -310,7 +317,7 @@ form .file-input {
 /* Image */
 .post-card-image {
     width: 100%;
-    height: auto;
+    height: 500px;
     border-radius: 8px;
     object-fit: cover;
     margin-bottom: 15px;
@@ -318,7 +325,7 @@ form .file-input {
 
 /* Category */
 .post-card-category {
-    background-color: #BF171C;
+    background-color: #8C0303;
     color: #fff;
     padding: 5px 10px;
     border-radius: 4px;
@@ -385,16 +392,4 @@ form .file-input {
 
 .post-card-placement span:first-child::before {
     content: '';
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .post-card-stats {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .post-card-stat {
-        margin-bottom: 10px;
-    }
 }
