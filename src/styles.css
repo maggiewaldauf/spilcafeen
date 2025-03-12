@@ -14,20 +14,21 @@ body {
     font-family: 'Sora', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color-dark);
-    margin: 0;
-    padding: 0;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 html, body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
     overflow-x: hidden;
+    background-color: #f1f1f1;
 }
 
 
 main {
-    padding: 50px 0 0;
+    padding: 50px 0;
     width: 100%;
     background-color: #f1f1f1;
 }
@@ -52,7 +53,9 @@ h3 {
     background-color: #f1f1f1;
     min-height: calc(100vh - 58px - 2em);
     padding-top: 3em;
+    padding-left: 1em;
     width: 100%;
+    text-align: center;
  
 }
 
@@ -67,6 +70,9 @@ h3 {
     text-transform: uppercase;
 }
 
+.no-results-message {
+    padding-left: 100px;
+}
 
 /* ---------- nav styling ---------- */
 

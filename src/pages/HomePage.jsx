@@ -120,7 +120,7 @@ export default function HomePage() {
                     ))}
                 </section>
             ) : (
-                <p>No matching results</p>
+                <p className="no-results-message">No matching results</p>
             )}
             </section>
         </section>
