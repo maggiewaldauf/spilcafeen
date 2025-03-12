@@ -6,7 +6,7 @@ export default function PostCard({ post }) {
     const navigate = useNavigate();
     
     function handleClick() {
-        navigate(`posts/${post.id}`);
+        navigate(`/spilcafeen/update/${post.id}`); // Navigate with correct URL structure
     }
 
     return (

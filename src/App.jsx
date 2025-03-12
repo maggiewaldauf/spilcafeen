@@ -53,9 +53,9 @@ const App = () => {
           element: user && isAdmin ? <CreatePage /> : <Navigate to="/spilcafeen/home" />, // Redirect if not admin
         },
         {
-          path: "posts/:postId",
-          element: user ? <UpdatePage /> : <Navigate to="/spilcafeen/" />, // Show UpdatePage if logged in
-        },
+          path: "/spilcafeen/update/:postId",  
+          element: user && isAdmin ? <UpdatePage /> : <Navigate to="/spilcafeen/home" />,
+      }
       ],
     },
   ]);
