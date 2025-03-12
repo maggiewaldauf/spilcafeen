@@ -70,29 +70,30 @@ h3 {
 }
 
 /* ---------- nav styling ---------- */
-
 nav {
     background-color: #8C0303;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    text-align: center;
     display: flex;
-    justify-content: space-between; /* Space between logo and links */
+    justify-content: space-between;  /* Space between logo, links, and logout */
     align-items: center;
     padding: 10px 20px;
-    z-index: 100; /* Ensure navbar is always in front */
+    z-index: 100;  /* Ensure navbar is always in front */
+    text-align: center;
 }
 
 nav .logo {
     height: 50px;
-    margin-left: 20px;
+    margin-left: 20px; 
 }
 
 nav .nav-links {
     display: flex;
+    justify-content: center; 
     gap: 20px;
+    flex-grow: 1; 
 }
 
 nav a {
@@ -115,7 +116,33 @@ nav a.active {
     color: #8C0303;
 }
 
+.logout-container {
+    display: flex;
+    justify-content: flex-end; 
+    margin-right: 20px;
+}
 
+.logout-button {
+    background-color: transparent;
+    color: var(--text-color-light);
+    padding: 20px 16px;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: white;
+    color: #8C0303; 
+}
+
+.logout-button:active {
+    background-color: white;
+    color: #8C0303;
+}
 
 /* ---------- grid container styling ---------- */
 .grid-container {
@@ -275,7 +302,7 @@ form .file-input {
 
 .search-and-filter {
     background: #f1f1f1;
-    padding: 60px 30px 0px 30px;
+    padding: 80px 30px 0px 30px;
     border-bottom: 2px solid #8C0303;
     width: 100%;
 }
@@ -381,7 +408,7 @@ form .file-input {
 
   @media (max-width: 600px) {
     .search-and-filter {
-        padding: 30px 15px 0px; /* Reduce padding for smaller screens */
+        padding: 30px 15px 0px;
     }
 
     .search-container {
@@ -391,42 +418,42 @@ form .file-input {
     .search-bar {
         width: 100%;
         padding: 10px;
-        font-size: 14px; /* Slightly smaller font for mobile */
+        font-size: 14px;
     }
 
     .filters {
-        flex-direction: column; /* Stack filters vertically */
-        gap: 10px; /* Add more spacing */
-        padding: 15px; /* Adjust padding */
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
     }
 
     .filter-group {
-        flex-direction: column; /* Stack filters inside the group */
+        flex-direction: column;
         width: 100%;
-        align-items: stretch; /* Make elements take full width */
+        align-items: stretch;
     }
 
     .filter, 
     .player-input, 
     .duration-input, 
     .difficulty-selector select {
-        width: 100%; /* Full width for better usability */
-        text-align: center; /* Center align text */
+        width: 100%;
+        text-align: center;
         padding: 10px;
     }
 
     .counter-btn {
-        width: 50px; /* Set button width for consistent sizing */
+        width: 50px;
         padding: 10px;
     }
 
     .range-slider {
-        flex-direction: column; /* Stack slider elements */
-        align-items: center; /* Center align */
+        flex-direction: column;
+        align-items: center;
     }
 
     .range-input {
-        width: 100%; /* Full width for touch-friendliness */
+        width: 100%;
     }
 }
 

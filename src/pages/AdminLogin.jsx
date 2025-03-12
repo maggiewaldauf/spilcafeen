@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db, provider } from "../firebase-config";
-import Logout from "../components/LogOut";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -12,48 +11,56 @@ export default function AdminLogin() {
   const signInWithGoogle = async () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result.user.displayName);
-        console.log(result.user.email);
+        console.log("User signed in:", result.user);
+        console.log("User display name:", result.user.displayName);
+        console.log("User email:", result.user.email);
+
         // After successful login, check if the user is an admin
         const user = result.user;
         const checkAdmin = async () => {
           const adminDoc = await getDoc(doc(db, "admins", user.uid));
+          console.log("Checking admin document for UID:", user.uid);
+          
           if (adminDoc.exists()) {
-            // If the user is an admin, log a message or take any action for admins
+            console.log("Admin document found:", adminDoc.data());
+            // Store the user info in localStorage (or consider using state)
+            localStorage.setItem("user", JSON.stringify(result.user)); // Store user in localStorage
+            
+            // If the user is an admin, redirect to HomePage
             console.log("User is an admin");
-            // Redirect to HomePage after verifying admin
             navigate("/spilcafeen/home");
           } else {
-            // If the user is not an admin, show a message or handle it
+            console.log("No admin document found for UID:", user.uid);
+            // If the user is not an admin, show a message
             alert("You are not an admin!");
           }
         };
         checkAdmin();
       })
       .catch((error) => {
+        console.error("Error signing in:", error);
         alert("You have not signed in: " + error);
       });
   };
 
-  // Checking if a user is logged in or not (on page load)
   useEffect(() => {
-    const checkAdminStatus = async (user) => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        const adminDoc = await getDoc(doc(db, "admins", uid));
-        if (adminDoc.exists()) {
-          console.log("User is an admin");
-          // Redirect to HomePage after checking status
-          navigate("/spilcafeen/home");
-        } else {
-          // Handle if user is not an admin
-          alert("You are not an admin!");
-        }
-      }
-    };
+        console.log("Authenticated user UID:", uid);
 
-    onAuthStateChanged(auth, (user) => {
-      checkAdminStatus(user); // Check if the user is authenticated
+        const checkAdminStatus = async () => {
+          const adminDoc = await getDoc(doc(db, "admins", uid));
+          if (adminDoc.exists()) {
+            console.log("User is an admin");
+            navigate("/spilcafeen/home");
+          } else {
+            console.log("No admin document found for UID:", uid);
+            alert("You are not an admin!");
+          }
+        };
+        checkAdminStatus();
+      }
     });
   }, [navigate]);
 
@@ -63,7 +70,6 @@ export default function AdminLogin() {
       <button type="button" className="login-button" onClick={signInWithGoogle}>
         Login with Google
       </button>
-      <Logout /> {/* Assuming Logout component is used to sign out */}
     </div>
   );
 }
