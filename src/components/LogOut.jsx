@@ -1,3 +1,5 @@
+// NOT SHOWN IN THE SOLUTION
+
 import { signOut } from "firebase/auth";
 import { auth} from "../firebase-config";
 import { useNavigate } from "react-router-dom";

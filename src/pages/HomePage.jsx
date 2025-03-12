@@ -4,9 +4,9 @@ import React from "react";
 
 export default function HomePage() {
     const [posts, setPosts] = useState([]);
-    const [searchQuery, setSearchQuery] = useState(""); // 🔍 Search state
+    const [searchQuery, setSearchQuery] = useState(""); // Search state
     const [selectedCategory, setSelectedCategory] = useState(""); // Category filter state
-    const [selectedPlayers, setSelectedPlayers] = useState(2); // Players filter state (default to 1)
+    const [selectedPlayers, setSelectedPlayers] = useState(2); // Players filter state (default to 2)
     const [maxDuration, setMaxDuration] = useState(120); // Max duration state
 
     useEffect(() => {
@@ -56,10 +56,11 @@ export default function HomePage() {
                     <span className="search-icon">&#x1F50D;</span>
                 </div>
 
-                
+                {/* Filters */}
                 <div className="filters">
                 <strong>Filter by</strong>
                     <div className="filter-group">
+                        {/* Category Filter */}
                         <label>Category:</label>
                         <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="filter">
                         <option value="">All Categories</option>
@@ -70,6 +71,7 @@ export default function HomePage() {
                     </div>
 
                     <div className="filter-group">
+                        {/* Players Filter */}
                         <label>Players:</label>
                         <div className="player-filter">
                         <button className="counter-btn" onClick={() => setSelectedPlayers(prev => Math.max(1, prev - 1))}>-</button>
@@ -85,6 +87,7 @@ export default function HomePage() {
                     </div>
 
                     <div className="filter-group">
+                        {/* Duration Filter */}
                         <label>Max Duration:</label>
                         <div className="range-slider">
                         <input
@@ -109,6 +112,7 @@ export default function HomePage() {
             </section>
 
             <section className="page">
+                {/* Post cards are shown */}
                 {filteredPosts.length > 0 ? (
                 <section className="grid-container">
                     {filteredPosts.map(post => (

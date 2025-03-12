@@ -4,10 +4,7 @@ import { FaUsers, FaClock, FaChild } from "react-icons/fa"; // Using icons for p
 
 export default function PostCard({ post }) {
     const navigate = useNavigate();
-
-    /**
-     * handleClick is called when user clicks on the Article (PostCard)
-     */
+    
     function handleClick() {
         navigate(`posts/${post.id}`);
     }
