@@ -1,11 +1,9 @@
-// NOT SHOWN IN THE SOLUTION
-
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db, provider } from "../firebase-config";
-import Logout from "../components/LogOut"; // Assuming you have a Logout component
+import Logout from "../components/LogOut";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -23,9 +21,12 @@ export default function AdminLogin() {
           if (adminDoc.exists()) {
             // If the user is an admin, log a message or take any action for admins
             console.log("User is an admin");
+            // Redirect to HomePage after verifying admin
+            navigate("/spilcafeen/home");
+          } else {
+            // If the user is not an admin, show a message or handle it
+            alert("You are not an admin!");
           }
-          // Regardless of admin status, redirect to the HomePage
-          navigate("/home"); // Redirect to HomePage after login
         };
         checkAdmin();
       })
@@ -42,9 +43,12 @@ export default function AdminLogin() {
         const adminDoc = await getDoc(doc(db, "admins", uid));
         if (adminDoc.exists()) {
           console.log("User is an admin");
+          // Redirect to HomePage after checking status
+          navigate("/spilcafeen/home");
+        } else {
+          // Handle if user is not an admin
+          alert("You are not an admin!");
         }
-        // Redirect to HomePage after checking status
-        navigate("/home");
       }
     };
 
@@ -54,9 +58,9 @@ export default function AdminLogin() {
   }, [navigate]);
 
   return (
-    <div style={{ marginTop: "150px" }}>
+    <div className="container">
       <h1>Admin Login</h1>
-      <button type="button" onClick={signInWithGoogle}>
+      <button type="button" className="login-button" onClick={signInWithGoogle}>
         Login with Google
       </button>
       <Logout /> {/* Assuming Logout component is used to sign out */}

@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
     return (
         <p>
-            <button type="button" onClick={logout}>Logout</button>
+            <button className="login-button" type="button" onClick={logout}>Logout</button>
         </p>
     )
 
