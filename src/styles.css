@@ -21,9 +21,14 @@ body {
     align-items: center;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 
 main {
     padding: 50px 0 0;
+    width: 100%;
     background-color: #f1f1f1;
 }
 
@@ -46,8 +51,9 @@ h3 {
 .page {
     background-color: #f1f1f1;
     min-height: calc(100vh - 58px - 2em);
-    padding: 1em;
     padding-top: 3em;
+    width: 100%;
+ 
 }
 
 .text-center {
@@ -63,7 +69,7 @@ h3 {
 
 
 /* ---------- nav styling ---------- */
-/* Style the navbar */
+
 nav {
     background-color: #8C0303;
     position: fixed;
@@ -73,24 +79,21 @@ nav {
     text-align: center;
     display: flex;
     justify-content: space-between; /* Space between logo and links */
-    align-items: center; /* Vertically center content */
-    padding: 10px 20px; /* Padding around the navbar */
+    align-items: center;
+    padding: 10px 20px;
     z-index: 100; /* Ensure navbar is always in front */
 }
 
-/* Style the logo */
 nav .logo {
-    height: 50px; /* Adjust logo size */
-    margin-left: 20px; /* Space from the left edge */
+    height: 50px;
+    margin-left: 20px;
 }
 
-/* Style the links container */
 nav .nav-links {
     display: flex;
-    gap: 20px; /* Space between the links */
+    gap: 20px;
 }
 
-/* Style the links inside the navigation bar */
 nav a {
     display: inline-block;
     color: var(--text-color-light);
@@ -101,13 +104,11 @@ nav a {
     text-transform: uppercase;
 }
 
-/* Change the color of links on hover */
 nav a:hover {
     background-color: var(--light-grey);
     color: var(--text-color-dark);
 }
 
-/* Add a color to the active/current link */
 nav a.active {
     background-color: #B8B8B8;
     color: #8C0303;
@@ -121,10 +122,10 @@ nav a.active {
     grid-template-columns: 1fr;
     gap: 1em;
     min-height: 200px;
-
+    padding: 0px 50px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) { /* Media Queries for tablet*/
     .grid-container {
         grid-template-columns: 1fr 1fr;
     }
@@ -258,12 +259,10 @@ form .file-input {
   cursor: pointer;
 }
 
-/* Hover effect for select box */
 .difficulty-selector select:hover {
   border-color: #6c0202;
 }
 
-/* Focus effect for select box */
 .difficulty-selector select:focus {
   outline: none;
   border-color: #4c0101;
@@ -277,6 +276,7 @@ form .file-input {
     background: #f1f1f1;
     padding: 60px 30px 0px 30px;
     border-bottom: 2px solid #8C0303;
+    width: 100%;
 }
 
 .search-container {
@@ -291,8 +291,8 @@ form .file-input {
 
 .search-bar {
     width: 100%;
-    max-width: 1000px;       /* Limits the maximum width of the search bar */
-    padding: 10px 30px 10px 10px; /* Right padding for space for the icon */
+    max-width: 1000px;
+    padding: 10px 30px 10px 10px;
     margin: 0;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -312,10 +312,10 @@ form .file-input {
 
 .filters {
     display: flex;
-    gap: 10%; /* Space between each filter group */
+    gap: 5%; /* Space between each filter group */
     padding: 20px;
-    background-color: f1f1f1;
-    align-items: center; /* Align items vertically centered */
+    background-color: #f1f1f1;
+    align-items: center;
     justify-content: center;
   }
   
@@ -375,6 +375,60 @@ form .file-input {
     border-radius: 5px;
     padding: 8px;
   }
+
+  /* Media Queries for tablet*/
+
+  @media (max-width: 600px) {
+    .search-and-filter {
+        padding: 30px 15px 0px; /* Reduce padding for smaller screens */
+    }
+
+    .search-container {
+        width: 100%;
+    }
+
+    .search-bar {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px; /* Slightly smaller font for mobile */
+    }
+
+    .filters {
+        flex-direction: column; /* Stack filters vertically */
+        gap: 10px; /* Add more spacing */
+        padding: 15px; /* Adjust padding */
+    }
+
+    .filter-group {
+        flex-direction: column; /* Stack filters inside the group */
+        width: 100%;
+        align-items: stretch; /* Make elements take full width */
+    }
+
+    .filter, 
+    .player-input, 
+    .duration-input, 
+    .difficulty-selector select {
+        width: 100%; /* Full width for better usability */
+        text-align: center; /* Center align text */
+        padding: 10px;
+    }
+
+    .counter-btn {
+        width: 50px; /* Set button width for consistent sizing */
+        padding: 10px;
+    }
+
+    .range-slider {
+        flex-direction: column; /* Stack slider elements */
+        align-items: center; /* Center align */
+    }
+
+    .range-input {
+        width: 100%; /* Full width for touch-friendliness */
+    }
+}
+
 /* ---------- Card Styling ------------- */
 .post-card {
     background-color: #fff;
@@ -393,7 +447,6 @@ form .file-input {
     z-index: 10; /* Raise the card slightly on hover, but still behind the navbar */
 }
 
-/* Image */
 .post-card-image {
     width: 100%;
     height: 500px;
@@ -402,7 +455,6 @@ form .file-input {
     margin-bottom: 15px;
 }
 
-/* Category */
 .post-card-category {
     background-color: #8C0303;
     color: #fff;
@@ -429,21 +481,18 @@ form .file-input {
     color: #333;
 }
 
-/* Title */
 .post-card-title {
     font-size: 1.6rem;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-/* Description */
 .post-card-description {
     font-size: 1rem;
     color: #555;
     margin-bottom: 15px;
 }
 
-/* Complexity */
 .post-card-complexity {
     font-size: 1rem;
     margin-bottom: 10px;

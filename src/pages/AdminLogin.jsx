@@ -1,3 +1,5 @@
+// NOT SHOWN IN THE SOLUTION
+
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
